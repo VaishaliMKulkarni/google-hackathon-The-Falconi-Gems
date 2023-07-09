@@ -66,10 +66,45 @@
       $('.question4-screen button').click(function () {          
         buildRecommendationSummary();
       });
-      // Show Itinerary (To Do: Show detail page when Charlie finished)
+      // Show Details
       $('.chat-body button').first().click(function () {
-          $('.chat-body').addClass('hide');            
-          $('.itinerary-screen').removeClass('hide');
+        generateDetailsCarouselAsync(locationImages)
+        .then(function(imagesHtml) {
+          // Update the slides carousel HTML
+          var slidesElement = document.getElementById('detailSlides');     
+          slidesElement.innerHTML = imagesHtml;
+
+          // Dynamically include carousel JS at this point to ensure it knows the width of images
+          fetch('js/carouselChris.js')
+          .then(response => response.text())
+          .then(scriptText => {
+            const scriptElement = document.createElement('script');
+            scriptElement.textContent = scriptText;
+            document.head.appendChild(scriptElement);
+            
+            // Optional: Execute the code after loading the script
+            // initializeCarousel();
+          })
+          .catch(error => {
+            console.error('Error loading carousel script:', error);
+          });
+
+          $('.chat-body').addClass('hide');   
+          console.log('imagesHtml=' + imagesHtml);
+          $('.details-screen').removeClass('hide');
+        });
+        buildRecommendationDetail();
+      });
+      // Show Itinerary (To Do: Show detail page when Charlie finished)
+      $('#btnViewExperiences').click(function() {
+        buildItinerary();
+        $('.details-screen').addClass('hide');
+        $('.itinerary-screen').removeClass('hide');
+      });
+      $('#btnViewExperiences2').click(function() {
+        buildItinerary();
+        $('.details-screen').addClass('hide');
+        $('.itinerary-screen').removeClass('hide');
       });
 
       // Reject current selection and show another
@@ -79,7 +114,6 @@
 
       $('.end-chat').click(function () {
           $('.chat-body').addClass('hide');
-          $('.chat-input').addClass('hide');
           $('.chat-session-end').removeClass('hide');
           $('.chat-header-option').addClass('hide');
       });

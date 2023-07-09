@@ -13,69 +13,14 @@
       color: #673ab7;
   }
 
-  /* Screen Formatting */
-  #responseLocation {
-    width: 100% !important;
-  }
-
-  #responseText {
-    width: 100% !important;
-  }
-
-  #responseDiv, #detailsResponseTitle, #detailsResponseText, #detailsResponseText,
-  #detailsResponseWeather, #detailsResponseReviews, #detailsResponseRating,
-  #itineraryResponseDiv, #itineraryResponseLocation, #itineraryResponseText {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-  }
-  
-  .locationTitle {
-    text-align: left;
-    font-size: 1em;
-    font-weight: bold;
-  }
-  
-  .locationDescription {
-    text-align: left;
-    font-size: 0.9em;
-    margin-bottom: 1em;
-    margin-top: -1em;
-  }
-
-  #locationImage {
-    max-height: 300px;
-    overflow: hidden;
-  }
-
-  .title {
-    font-size: 1.1em;
-    margin-top:1.5em;
-    font-weight: bold;
-  }
-
-  hr {
-    height: 1px;
-    border: none;
-    background-color: purple;
-  }
-
-  .exp-view {
-    width: 150px !important;
-    text-align: center !important;
-  }
-
-  button.action {
-    border: none;
-    margin-left:10px; 
-    margin-right: 10px;
-    background-color: #fff;
+  .responseText{
+    color: #fff;
   }
 
 /* Screw with the scrollbar */
 .scroller {
     overflow-y: scroll !important;
+    width: 395px;
   }
 
 /* width */
@@ -115,7 +60,7 @@
   .button:hover {
     background-color: #813bcb;
   }
-  
+
 .pad10 {
     padding: 10px;
 }
@@ -132,16 +77,18 @@ section {
 
   input[type="radio"] {
     display: none;
-    &:not(:disabled) ~ label {
-      cursor: pointer;
-    }
-    &:disabled ~ label {
-      color: #9e38de;
-      border-color: #673ab7;
-      box-shadow: none;
-      cursor: not-allowed;
-    }
   }
+  
+  input[type="radio"]:not(:disabled) ~ label {
+    cursor: pointer;
+  }
+  
+  input[type="radio"]:disabled ~ label {
+    color: #9e38de;
+    border-color: #673ab7;
+    box-shadow: none;
+    cursor: not-allowed;
+  }  
   
   label {
     height: 100%;
@@ -163,25 +110,27 @@ section {
     background: #9e38de;
     color: #fff !important;
     box-shadow: none;
-    &::after {
-      color: #9e38de;
-      font-family: FontAwesome;
-      border: 2px solid #673ab7;
-      content: "\f00c";
-      font-size: 14px;
-      position: absolute;
-      top: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 30px;
-      width: 30px;
-      line-height: 30px;
-      text-align: center;
-      border-radius: 50%;
-      background: white;
-      box-shadow: none;
-    }
   }
+  
+  input[type="radio"]:checked + label::after {
+    color: #9e38de;
+    font-family: FontAwesome;
+    border: 2px solid #673ab7;
+    content: "\f00c";
+    font-size: 14px;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    background: white;
+    box-shadow: none;
+  }
+  
   input[type="radio"]#control_05:checked + label {
     background: red;
     border-color: red;
@@ -205,7 +154,6 @@ section {
     border-radius: 15px;
     box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
     visibility: visible;
-    /*overflow: scroll*/;
 }
 .chat-screen.show-chat {
     -moz-transition: bottom 0.5s linear;
@@ -247,7 +195,7 @@ section {
 .chat-screen .chat-header .chat-header-option .dropdown .dropdown-toggle svg {
     color: #fff;
 }
-.chat-screen .home-screen, .question1-screen, .question2-screen, .question3-screen, .question4-screen, .details-screen, .chat-body, .itinerary-screen {
+.chat-screen .home-screen, .question1-screen, .question2-screen, .question3-screen, .question4-screen, .chat-body, .itinerary-screen {
     padding: 10px 30px 30px 30px !important;
     display: block;
     max-height: 550px;
@@ -291,6 +239,14 @@ section {
     min-height: 382px;
     background: #fbfbfb;
     overflow: scroll;
+}
+
+.chat-screen .chat-body {
+    padding: 25px;
+    display: inline-block;
+    min-height: 382px;
+    max-height: 532px;
+    background: #fbfbfb;
 }
 .chat-screen .chat-body .chat-start {
     border: 1px solid #f8d4ff;
@@ -485,4 +441,13 @@ section {
     transform: rotate(360deg);
     opacity: 1;
     z-index: 1;
+}
+
+.more-info-actions > button {
+    width: 45px;
+}
+
+.exp-view {
+    width: 200px;
+    text-align: center;
 }

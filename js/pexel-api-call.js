@@ -12,7 +12,13 @@ function makeImagesAPICallAsync(locationName, numberOfImages) {
         var jsonData = JSON.parse(xhr.responseText);
         console.log('Pexel Image Fetch: ' + jsonData);
         var images = jsonData.photos.map((photo) => photo.src.medium);
+
         var randomImages = returnImages(images, numberOfImages);
+
+        // Put 5 images into state for this location (for detail page carousel)
+        var carouselImages = returnImages(images, 5);
+        locationImages = images;
+
         // Resolve the Promise with the images array
         resolve(randomImages);
       } else {
