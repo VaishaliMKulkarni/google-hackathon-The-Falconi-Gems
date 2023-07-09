@@ -40,7 +40,7 @@ function apiGetVertexPromptResponseAsync(prompt, maxTokens) {
         }
       ],
       "parameters": {
-        "temperature": 0.7,
+        "temperature": 1,
         "maxOutputTokens": maxTokens,
         "topP": 0.8,
         "topK": 40

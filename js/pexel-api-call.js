@@ -1,5 +1,5 @@
 // Function to make the API call
-function makeImagesAPICallAsync(locationName) {
+function makeImagesAPICallAsync(locationName, numberOfImages) {
   return new Promise(function(resolve, reject) {
     locationName = encodeURIComponent(locationName);
     var xhr = new XMLHttpRequest();
@@ -12,8 +12,9 @@ function makeImagesAPICallAsync(locationName) {
         var jsonData = JSON.parse(xhr.responseText);
         console.log('Pexel Image Fetch: ' + jsonData);
         var images = jsonData.photos.map((photo) => photo.src.medium);
+        var randomImages = returnImages(images, numberOfImages);
         // Resolve the Promise with the images array
-        resolve(images);
+        resolve(randomImages);
       } else {
         // Reject the Promise with the error message
         reject('Error: ' + xhr.status);

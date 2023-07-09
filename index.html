@@ -90,7 +90,7 @@
                 <img src="img/welcome-image.png" height="200px" alt="Welcome" style="padding-bottom: 20px;" />
             </div>
             <div class="col-md-12">
-                <button class="btn btn-primary btn-rounded btn-block">View my personal experiences!</button>
+                <button class="btn btn-primary btn-rounded btn-block">Let's Go!</button>
             </div>
            <div class="col-md-12">
                <div class="powered-by">&copy; 2023 venturai</div>
@@ -240,7 +240,6 @@
                 &nbsp; Another
             </button>
         </div>
-        <div class="chat-bubble me">Wow! I've just wet my pants!</div>
         <div class="chat-bubble you">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto;display: block;shape-rendering: auto;width: 43px;height: 20px;" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
                 <circle cx="0" cy="44.1678" r="15" fill="#ffffff">
@@ -252,6 +251,43 @@
             </circle></svg>
         </div>
     </div>
+
+    <!-- Detail Page -->
+    <!-- Results Overview Screen-->
+    <div class="itinerary-screen hide scroller">
+        <div class="chat-bubble you">
+            <!-- API DETAIL RESPONSE-->
+            <div id="itineraryResponseDiv">
+                <span style="font-size: 1em; font-weight: bold;">  
+                    <span id="itineraryResponseLocation">itinerary</span>
+                </span>
+                <br />
+                <span id="itineraryResponseText">Here is your itinerary</span>
+            </div>
+        </div>
+        <div id="itineraryLocationImage"></div>
+        <div class="pad10">
+            <button class="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                &nbsp; View
+            </button>
+            <button class="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-thumbs-down"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"></path></svg>
+                &nbsp; Another
+            </button>
+        </div>
+        <div class="chat-bubble you">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto;display: block;shape-rendering: auto;width: 43px;height: 20px;" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                <circle cx="0" cy="44.1678" r="15" fill="#ffffff">
+                    <animate attributeName="cy" calcMode="spline" keySplines="0 0.5 0.5 1;0.5 0 1 0.5;0.5 0.5 0.5 0.5" repeatCount="indefinite" values="57.5;42.5;57.5;57.5" keyTimes="0;0.3;0.6;1" dur="1s" begin="-0.6s"></animate>
+                </circle> <circle cx="45" cy="43.0965" r="15" fill="#ffffff">
+                <animate attributeName="cy" calcMode="spline" keySplines="0 0.5 0.5 1;0.5 0 1 0.5;0.5 0.5 0.5 0.5" repeatCount="indefinite" values="57.5;42.5;57.5;57.5" keyTimes="0;0.3;0.6;1" dur="1s" begin="-0.39999999999999997s"></animate>
+            </circle> <circle cx="90" cy="52.0442" r="15" fill="#ffffff">
+                <animate attributeName="cy" calcMode="spline" keySplines="0 0.5 0.5 1;0.5 0 1 0.5;0.5 0.5 0.5 0.5" repeatCount="indefinite" values="57.5;42.5;57.5;57.5" keyTimes="0;0.3;0.6;1" dur="1s" begin="-0.19999999999999998s"></animate>
+            </circle></svg>
+        </div>
+    </div>
+
     <div class="chat-input hide">
         <input type="text" placeholder="Type a message...">
         <div class="input-action-icon">
@@ -352,114 +388,6 @@
 <script src="js/literals.js"></script>
 <script src="js/helpers.js"></script>
 <script src="js/event-listeners.js"></script>
-<!--<script src="js/api-get-service-account-token.js"></script>-->
-<!--<script src="js/jsrsasign-all-min.js"></script>
-<script src="js/api-obtain-access-token.js"></script>-->
- <script>
-        $(document).ready(function(){
-            $(".select2_el").select2({
-            });
-            //makeVertexAPIPromptCall(accessToken, promptContext, promptString);
-            //makeImagesAPICall();
-        });
-        </script>
-<script>
-    $(document).ready(function () {
-        //Toggle fullscreen
-        $(".chat-bot-icon").click(function (e) {
-            $(this).children('img').toggleClass('hide');
-            $(this).children('svg').toggleClass('animate');
-            $('.chat-screen').toggleClass('show-chat');
-        });
-        $('.home-screen button').click(function () {
-            $('.home-screen').addClass('hide');
-            $('.question1-screen').removeClass('hide');
-        });
-        $('.question1-screen button').click(function () {
-            $('.question1-screen').addClass('hide');
-            $('.question2-screen').removeClass('hide');
-        });
-        $('.question2-screen button').click(function () {
-            $('.question2-screen').addClass('hide');
-            $('.question3-screen').removeClass('hide');
-        });
-        $('.question3-screen button').click(function () {
-            $('.question3-screen').addClass('hide');
-            $('.question4-screen').removeClass('hide');
-        });
-        $('.question4-screen button').click(function () {
-            
-            let preferencesString = buildPreferences(promptPref1, promptPref2, promptPref3, promptPref4);
-
-            // 1. Get the location name
-            apiGetVertexPromptResponseAsync(forRecommendedDestination + preferencesString, 8)
-            .then(function (locationName) {
-                console.log("locationName: " + locationName);
-                // Continue with the code that depends on the locationName value
-                var locationName = removeAsterisksAndNewlines(locationName);    
-
-                // 2. Get the location description
-                apiGetVertexPromptResponseAsync(forDestinationSummary + locationName, 60)
-                .then(function (locationShortDescription) {
-                    console.log("locationShortDescription: " + locationShortDescription);
-
-                    // 3. Get a location image
-                    makeImagesAPICallAsync(locationName)
-                        .then(function(images) {
-                            console.log('Images: ', images);
-                            // Continue with the code that depends on the images array
-
-                            // Example: Display the images in an HTML element
-                            var imagesElement = document.getElementById('locationImage');
-                            imagesElement.innerHTML = imageToHTMLImg(images);
-                            //images.join(', ');
-                            responseLocation.textContent = locationName;
-                            responseText.textContent = locationShortDescription + '...';
-                            responseHeaderLocation.textContent = 'I recommend ' + locationName;                   
-                            $('.question4-screen').addClass('hide');
-                            $('.chat-body').removeClass('hide');
-                            $('.chat-input').removeClass('hide');
-                            $('.chat-header-option').removeClass('hide');            
-                            $('.show-agent-top').removeClass('hide');   
-                        })
-                        .catch(function(error) {
-                            console.error('Error occurred:', error);
-                            // Handle the error accordingly
-                            // My not be any images but still show the U
-                            // Update UI
-                            responseLocation.textContent = locationName;
-                            responseText.textContent = locationShortDescription;
-                            responseHeaderLocation.textContent = 'I recommend ' + locationName;                   
-                            $('.question4-screen').addClass('hide');
-                            $('.chat-body').removeClass('hide');
-                            $('.chat-input').removeClass('hide');
-                            $('.chat-header-option').removeClass('hide');            
-                            $('.show-agent-top').removeClass('hide');   
-
-                            // Example: Display an error message in an HTML element
-                            var errorElement = document.getElementById('error');
-                            errorElement.textContent = 'An error occurred: ' + error;
-                        });                    
-                    })                 
-                    .catch(function (error) {
-                    console.error("Error occurred:", error);
-                    // Handle the error accordingly
-                });                  
-            })
-            .catch(function (error) {
-                console.error("Error occurred:", error);
-                // Handle the error accordingly
-            });
-
-        });
-        $('.end-chat').click(function () {
-            $('.chat-body').addClass('hide');
-            $('.chat-input').addClass('hide');
-            $('.chat-session-end').removeClass('hide');
-            $('.chat-header-option').addClass('hide');
-        });
-    });
-</script>
 </body>
 
 </html>
