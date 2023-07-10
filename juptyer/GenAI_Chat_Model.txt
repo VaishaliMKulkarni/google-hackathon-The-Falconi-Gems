@@ -1,0 +1,43 @@
+!pip install google-cloud-aiplatform==1.26.0
+
+from google.cloud import aiplatform
+aiplatform.init(project='gen-the-falconi-gems')
+
+****Authentication*****
+
+from google.colab import auth
+auth.authenticate_user()
+
+! gcloud config set project gen-the-falconi-gems
+
+****Chat Model*****
+
+from vertexai.preview.language_models import ChatModel, InputOutputTextPair
+
+chat_model = ChatModel.from_pretrained("chat-bison@001")
+
+parameters = {
+        "temperature": 0.5,
+        "max_output_tokens": 256,
+        "top_p": 0.95,
+        "top_k": 40,
+    }
+	
+
+chat = chat_model.start_chat(
+        context="You are an experience tour guide in Paris that can answer any questions a tourist might ask.",
+        examples=[
+            InputOutputTextPair(
+                input_text='Give me your top sightseeing location in Paris?',
+                output_text="The Arch de Triumph a must-see sight in Paris. It is a symbol of unity and peace. It's located at the end of the famous Champs De Elise, and it's a great place to people-watch and take photos.",
+            ),
+        ]
+    )
+
+response = chat.send_message("What else can you recommend?", **parameters)
+print(f"PaLM 2 response: {response.text}")
+
+
+response = chat.send_message("How do I reach the Brandeburg Gate from the Reichstag?", **parameters)
+print(f"PaLM 2 response: {response.text}")
+

@@ -1,0 +1,31 @@
+!pip install google-cloud-aiplatform==1.26.0
+
+from google.cloud import aiplatform
+aiplatform.init(project='gen-the-falconi-gems')
+
+****  Authentication****
+
+from google.colab import auth
+auth.authenticate_user()
+
+! gcloud config set project gen-the-falconi-gems
+
+***  Text Model****
+
+from vertexai.preview.language_models import TextGenerationModel
+
+parameters = {
+        "temperature": 0.9,
+        "max_output_tokens": 512,
+        "top_p": .8,
+        "top_k": 40,
+    }
+	
+model = TextGenerationModel.from_pretrained("text-bison@001")
+
+response = model.predict(
+        'Give me 5 sightseeing trips for Berlin',
+        **parameters,
+)
+print(f"PaLM 2 Response: {response.text}")
+
