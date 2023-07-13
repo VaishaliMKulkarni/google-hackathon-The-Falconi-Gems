@@ -1,6 +1,6 @@
-function buildPreferences(pref1, pref2, pref3, pref4)
+function buildPreferences(pref1, pref2, pref3, pref4, customisation)
 {
-    return pref1 + pref2 + pref3 + pref4;
+    return pref1 + pref2 + pref3 + pref4 + '. ' + customisation;
 }
 
 function convertToBulletedList(text) {
@@ -75,7 +75,7 @@ function removeAsterisksAndNewlines(inputString) {
 
   function buildRecommendationSummary()
   {
-    preferencesString = buildPreferences(promptPref1, promptPref2, promptPref3, promptPref4);
+    preferencesString = buildPreferences(promptPref1, promptPref2, promptPref3, promptPref4, forCustomisation);
 
           // 1. Get the location name
           apiGetVertexPromptResponseAsync(forRecommendedDestination + preferencesString, 8)
@@ -102,11 +102,16 @@ function removeAsterisksAndNewlines(inputString) {
                           responseLocation.textContent = locationName;
                           responseText.textContent = locationShortDescription + '...';
                           responseHeaderLocation.textContent = 'I recommend ' + locationName;                   
+                          $('.question1-screen').addClass('hide');             
+                          $('.question2-screen').addClass('hide');             
+                          $('.question3-screen').addClass('hide');             
                           $('.question4-screen').addClass('hide');
+                          $('.itinerary-screen').addClass('hide');
+                          $('.details-screen').addClass('hide');
                           $('.chat-body').removeClass('hide');
                           $('.chat-input').removeClass('hide');
                           $('.chat-header-option').removeClass('hide');            
-                          $('.show-agent-top').removeClass('hide');   
+                          $('.show-agent-top').removeClass('hide');    
                       })
                       .catch(function(error) {
                           console.error('Error occurred:', error);
@@ -116,7 +121,12 @@ function removeAsterisksAndNewlines(inputString) {
                           responseLocation.textContent = locationName;
                           responseText.textContent = locationShortDescription;
                           responseHeaderLocation.textContent = 'I recommend ' + locationName;                   
+                          $('.question1-screen').addClass('hide');             
+                          $('.question2-screen').addClass('hide');             
+                          $('.question3-screen').addClass('hide');             
                           $('.question4-screen').addClass('hide');
+                          $('.itinerary-screen').addClass('hide');
+                          $('.details-screen').addClass('hide');
                           $('.chat-body').removeClass('hide');
                           $('.chat-input').removeClass('hide');
                           $('.chat-header-option').removeClass('hide');            
@@ -217,3 +227,8 @@ function removeAsterisksAndNewlines(inputString) {
       itineraryLocationDescription.innerHTML = formattedItinerary;
     });
   }
+
+  function setAccessToken() {
+    accessToken = prompt('Please enter Google Access Token:');
+  }
+

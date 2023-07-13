@@ -10,8 +10,9 @@
 // accessToken is obtained by generating it through the Google Cloud Shell terminal
 function apiGetVertexPromptResponseAsync(prompt, maxTokens) {
   console.log('apiGetVertexPromptResponse(prompt) with prompt: ' + prompt + ' and maxTokens of ' + maxTokens);
+  console.log('Calling endpoint: ' + endpoint);
   var xhr = new XMLHttpRequest();
-  var url = 'https://us-central1-aiplatform.googleapis.com/v1/projects/gen-the-falconi-gems/locations/us-central1/publishers/google/models/text-bison@001:predict'; // Replace with your API endpoint
+  //var url = 'https://us-central1-aiplatform.googleapis.com/v1/projects/gen-the-falconi-gems/locations/us-central1/publishers/google/models/text-bison@001:predict'; // Replace with your API endpoint
   var token = accessToken;
 
   return new Promise(function (resolve, reject) {
@@ -29,8 +30,8 @@ function apiGetVertexPromptResponseAsync(prompt, maxTokens) {
       }
     };
 
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+    xhr.open('POST', endpoint, true); //endpoint defined in literals.js
+    xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken); // If running locally (not on Google App Engine)
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     var requestBody = {

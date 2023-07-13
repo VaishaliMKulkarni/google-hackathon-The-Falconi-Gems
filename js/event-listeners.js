@@ -33,7 +33,15 @@
       });
     });
     
-
+    // Customise Prompt and regen summary page      
+    function processInput() {
+      var input = $("#add-prompt");
+      var customPrompt = input.val();        
+      input.val(''); // Clear the input field
+      console.log(customPrompt); // Do something with the text (e.g., process it or display it)
+      forCustomisation = customPrompt;
+      buildRecommendationSummary();
+    }
     // LOGIC
     $(document).ready(function () {
 
@@ -41,6 +49,25 @@
       $(".select2_el").select2({
       });
       
+      
+      $("#submit-prompt").click(function(e) {
+        e.preventDefault(); // Prevent the default behavior of the anchor tag
+        processInput();
+      });
+      
+      $("#add-prompt").keypress(function(e) {
+        if (e.key === "Enter" || e.keyCode === 13) {
+          e.preventDefault(); // Prevent form submission or page reload
+          processInput();
+        }
+      });
+
+      $('#btnViewNew').click(function (e) {
+        e.preventDefault(); // Prevent the default behavior of the anchor tag
+        forCustomisation = ''; // clear any customisations      
+        buildRecommendationSummary();
+      });
+
       //Toggle fullscreen
       $(".chat-bot-icon").click(function (e) {
           $(this).children('img').toggleClass('hide');
@@ -66,6 +93,7 @@
       $('.question4-screen button').click(function () {          
         buildRecommendationSummary();
       });
+
       // Show Details
       $('.chat-body button').first().click(function () {
         generateDetailsCarouselAsync(locationImages)
@@ -95,6 +123,7 @@
         });
         buildRecommendationDetail();
       });
+
       // Show Itinerary (To Do: Show detail page when Charlie finished)
       $('#btnViewExperiences').click(function() {
         buildItinerary();

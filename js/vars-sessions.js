@@ -14,3 +14,4 @@ var locationReviews = ""; // will be filled by the location reviews
 var locationItinerary = ""; // will be filled by the location itinerary
 var locationImages = ""; // will store the images in an array 
 var locationExcludes = ""; // will contain prompt strings to exclude previously rejected locations
+var forCustomisation = ""; // will contain a customisation prompt to get the recommendation
